@@ -32,7 +32,8 @@
     src="matter-js-0.20.0/build/matter.js"
     type="text/javascript"></script>
   <script type="module" src="scripts/rooms.js"></script>
-  <script type="module" src="scripts/petStats.js"></script>
+  <script type="module" src="scripts/products.js"></script>
+  <script type="module" src="scripts/pet.js"></script>
   <!-- <script src="sripts/matter.js"></script> -->
 </body>
 
