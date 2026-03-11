@@ -1,9 +1,11 @@
+import { pouSad } from "./matter.js";
+
 class Pet {
-  constructor(hunger, funny, health, happy) {
+  constructor(hunger, funny, health, sleep) {
     this._hunger = hunger;
     this._funny = funny;
     this._health = health;
-    this._happy = happy;
+    this._sleep = sleep;
   }
 
   use(product) {
@@ -16,17 +18,17 @@ class Pet {
     this._health += product._health;
     this._health > 100 ? (this._health = 100) : false;
 
-    this._happy += product._happy;
-    this._happy > 100 ? (this._happy = 100) : false;
+    this._sleep += product._sleep;
+    this._sleep > 100 ? (this._sleep = 100) : false;
 
     data = {
       hunger: this._hunger,
       funny: this._funny,
       health: this._health,
-      happy: this._happy,
+      sleep: this._sleep,
       user_id: 3,
     };
-    fetch("scripts/updatePetStats.php", {
+    fetch("scripts/update/petStats.php", {
       headers: {
         "Content-Type": "application/json",
       },
@@ -35,7 +37,7 @@ class Pet {
   }
 }
 
-let petStats = await fetch(`scripts/getPetStats.php?user_id=3`, {
+let petStats = await fetch(`scripts/get/petStats.php?user_id=3`, {
   headers: {
     "Content-Type": "application/json",
   },
@@ -43,7 +45,7 @@ let petStats = await fetch(`scripts/getPetStats.php?user_id=3`, {
   .then((response) => response.json())
   .then((json) => {
     if (json.length == 0) {
-      json = fetch(`scripts/createNewPet.php?user_id=3`, {
+      json = fetch(`scripts/create/newPet.php?user_id=3`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -56,11 +58,13 @@ let petStats = await fetch(`scripts/getPetStats.php?user_id=3`, {
     return json[0];
   });
 
-const pet = new Pet(
+export const pet = new Pet(
   petStats.hunger,
   petStats.funny,
   petStats.health,
-  petStats.happy,
+  petStats.sleep,
 );
+
+pouSad();
 
 console.log(pet);

@@ -28,13 +28,29 @@
       <button class="button third"><img src="" alt=""></button>
     </section>
   </footer>
-  <script
-    src="matter-js-0.20.0/build/matter.js"
-    type="text/javascript"></script>
+  <script src="matter-js-0.20.0/build/matter.js" type="text/javascript"></script>
+
   <script type="module" src="scripts/rooms.js"></script>
   <script type="module" src="scripts/products.js"></script>
+  <script type="module" src="scripts/potions.js"></script>
   <script type="module" src="scripts/pet.js"></script>
-  <!-- <script src="sripts/matter.js"></script> -->
+  <script type="module" src="scripts/matter.js"></script>
+  <script type="module" src="scripts/speed-limit.js"></script>
+  <script>// Управляем ограничителем
+    // console.log(window.SpeedLimiter.setGlobalMaxSpeed)
+    ; // Устанавливаем глобальную скорость
+
+    // Устанавливаем индивидуальный лимит для мяча
+    // window.SpeedLimiter.setBodySpeedLimit(ball, 30); // Мяч может лететь быстрее
+
+    // Получаем статистику
+    // console.log(window.SpeedLimiter.getStats());
+
+    // Включаем визуализацию
+    // setInterval(() => {
+    //   window.SpeedLimiter.visualizeSpeeds();
+    // }, 100);
+  </script>
 </body>
 
 </html>

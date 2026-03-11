@@ -43,48 +43,48 @@ class Room {
 }
 
 const bedroom = new Room(
-  `imgs/`,
-  `imgs/`,
+  `images/`,
+  `images/`,
   "Шкаф",
-  `imgs/`,
+  `images/`,
   "Ночник",
-  `imgs/`,
+  `images/`,
   "Магазин",
 );
 const kitchen = new Room(
-  `imgs/`,
-  `imgs/`,
+  `images/`,
+  `images/`,
   "Холодильник",
-  `imgs/`,
+  `images/`,
   "",
-  `imgs/`,
+  `images/`,
   "Магазин",
 );
 const bathroom = new Room(
-  `imgs/`,
-  `imgs/`,
+  `images/`,
+  `images/`,
   "Душ",
-  `imgs/`,
+  `images/`,
   "Мыло",
   "",
   "Магазин",
 );
 const laboratory = new Room(
-  `imgs/`,
-  `imgs/`,
+  `images/`,
+  `images/`,
   "Аптечка",
-  `imgs/`,
+  `images/`,
   "",
-  `imgs/`,
+  `images/`,
   "Аптека",
 );
 const playroom = new Room(
-  `imgs/`,
-  `imgs/`,
+  `images/`,
+  `images/`,
   "Комод",
-  `imgs/`,
+  `images/`,
   "Мячик",
-  `imgs/`,
+  `images/`,
   "Игры",
 );
 
