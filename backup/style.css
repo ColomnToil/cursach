@@ -1,0 +1,143 @@
+:root {
+}
+
+@font-face {
+  font-family: "pou";
+  src: url("../fonts/Pou.ttf");
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  border: none;
+  background: none;
+  font-family: "pou";
+  font-size: 32px;
+}
+
+.buttons {
+  display: flex;
+  width: 100%;
+  padding: 0px 10vw;
+  justify-content: space-between;
+  z-index: 1;
+  button {
+    width: 25vw;
+    z-index: 1;
+  }
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  /* background-color: rgba(200, 0, 25, 0.5); */
+}
+
+header {
+  width: 100vw;
+  height: 15vh;
+  display: flex;
+
+  .button {
+    width: 25vw;
+  }
+}
+
+main {
+  width: 100vw;
+  height: 75vh;
+  display: flex;
+  justify-content: flex-start;
+}
+
+footer {
+  width: 100vw;
+  height: 15vh;
+  display: flex;
+  margin-bottom: 5vw;
+  position: relative;
+  bottom: 10vh;
+}
+
+.shop {
+  display: none;
+  align-self: center;
+  position: absolute;
+  top: 12.5vh;
+  width: 50vw;
+  height: 75vh;
+  background-color: rgba(220, 220, 220, 0.8);
+  border-radius: 25px;
+  z-index: 5;
+
+  .grid {
+    display: grid;
+    z-index: 5;
+    padding: 5%;
+    grid-template-columns: repeat(5, 50%);
+    gap: 10px;
+
+    p {
+      font-size: 24px;
+    }
+
+    img {
+    }
+    .shop-item {
+      width: 150px;
+      height: 130px;
+    }
+  }
+}
+.middle {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  vertical-align: middle;
+  align-items: center;
+  button {
+    width: 54px;
+    height: 54px;
+    img {
+      width: 54px;
+      height: 54px;
+    }
+  }
+}
+.middle-down {
+  display: none;
+  justify-content: space-between;
+  justify-items: center;
+  vertical-align: middle;
+  align-items: center;
+  width: 25vw;
+  button {
+    width: 54px;
+    height: 54px;
+    img {
+      width: 54px;
+      height: 54px;
+    }
+  }
+}
+.title {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  vertical-align: baseline;
+  margin: 0px 32px;
+  width: 154px;
+}
+
+.coin-sm {
+  width: 20px !important;
+  height: 25px !important;
+}
+
+.owned-sm {
+  width: 25px !important;
+  height: 22px !important;
+}

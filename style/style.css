@@ -1,4 +1,17 @@
 :root {
+  --primary-bg: rgba(220, 220, 220, 0.8);
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --border-radius: 25px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 20px;
+}
+
+@font-face {
+  font-family: "pou";
+  src: url("../fonts/Pou.ttf");
 }
 
 * {
@@ -6,13 +19,25 @@
   padding: 0px;
   border: none;
   background: none;
+  font-family: "pou";
+  box-sizing: border-box;
 }
 
-.buttons {
-  display: flex;
-  width: 100%;
-  padding: 0px 15vw;
-  justify-content: space-between;
+/* Базовые размеры шрифта */
+html {
+  font-size: 16px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  html {
+    font-size: 24px;
+  }
 }
 
 body {
@@ -21,23 +46,376 @@ body {
   overflow: hidden;
   width: 100vw;
   height: 100vh;
+  position: fixed;
+  touch-action: none; /* Предотвращает скролл на мобильных */
 }
 
+/* Шапка */
 header {
   width: 100vw;
-  height: 5vh;
+  height: 12vh;
+  min-height: 60px;
   display: flex;
+  align-items: center;
+  padding: 0 var(--spacing-md);
+  z-index: 2;
+
+  .button {
+    width: 20vw;
+    max-width: 80px;
+
+    img {
+      width: 100%;
+      height: auto;
+      max-height: 50px;
+    }
+  }
+
+  .title {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 var(--spacing-md);
+    font-size: clamp(1.2rem, 5vw, 2rem);
+    flex: 1;
+  }
 }
 
+/* Основной контент */
 main {
   width: 100vw;
-  height: 90vh;
+  height: 70vh;
   display: flex;
   justify-content: flex-start;
+  align-items: center;
+  position: relative;
 }
 
+/* Нижняя панель */
 footer {
   width: 100vw;
-  height: 5vh;
+  height: 18vh;
+  min-height: 80px;
   display: flex;
+  align-items: flex-end;
+  padding-bottom: var(--spacing-md);
+  position: relative;
+  z-index: 2;
+  bottom: 10vh;
+}
+
+.buttons {
+  display: flex;
+  width: 100%;
+  padding: 0 5vw;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-sm);
+
+  #money {
+    font-size: 24px;
+  }
+
+  .first {
+    display: flex;
+    align-items: center;
+  }
+
+  button {
+    width: 20vw;
+    max-width: 80px;
+    aspect-ratio: 1 / 1;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}
+
+/* Магазин/меню */
+.shop {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  max-width: 800px;
+  height: 70vh;
+  max-height: 600px;
+  background-color: var(--primary-bg);
+  border-radius: var(--border-radius);
+  z-index: 1000;
+  overflow: hidden;
+  /* backdrop-filter: blur(5px); */
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* Плавный скролл на iOS */
+
+    /* Стилизация скроллбара */
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 3px;
+    }
+  }
+}
+
+/* Карточки товаров */
+.card {
+  background-color: var(--card-bg);
+  border-radius: var(--spacing-md);
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  border: 2px solid transparent;
+  aspect-ratio: 1 / 1.2;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &.selected {
+    border-color: gold;
+    background-color: rgba(255, 215, 0, 0.2);
+  }
+
+  &.owned {
+    opacity: 0.8;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  p {
+    font-size: clamp(0.7rem, 3vw, 1rem);
+    text-align: center;
+    margin: 0;
+    word-break: break-word;
+  }
+
+  .shop-item {
+    width: 100%;
+    max-width: 100px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+  }
+
+  .price-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    min-height: 30px;
+    width: 100%;
+  }
+
+  .price {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: clamp(0.7rem, 2.5vw, 0.9rem);
+    font-weight: bold;
+    color: #333;
+  }
+
+  .quantity {
+    background-color: #4caf50;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: clamp(0.6rem, 2vw, 0.8rem);
+    font-weight: bold;
+  }
+
+  &.category {
+    aspect-ratio: 1 / 1;
+
+    img {
+      width: 80%;
+      height: auto;
+      max-height: 60px;
+      object-fit: contain;
+    }
+  }
+
+  &.game-card {
+    text-decoration: none;
+    color: inherit;
+    aspect-ratio: 1 / 1;
+
+    .game-icon {
+      width: 60%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+    }
+  }
+}
+
+/* Иконки */
+.coin-icon {
+  width: clamp(14px, 4vw, 20px);
+  height: clamp(14px, 4vw, 20px);
+  object-fit: contain;
+}
+
+.owned-icon {
+  width: clamp(18px, 5vw, 24px);
+  height: clamp(18px, 5vw, 24px);
+  object-fit: contain;
+}
+
+/* Кнопки навигации по комнатам */
+.middle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-md);
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+
+  button {
+    width: clamp(40px, 10vw, 54px);
+    height: clamp(40px, 10vw, 54px);
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    /* backdrop-filter: blur(2px); */
+
+    img {
+      width: 60%;
+      height: 60%;
+      object-fit: contain;
+    }
+  }
+}
+
+.middle-down {
+  display: none;
+}
+
+/* Адаптация для очень маленьких экранов */
+@media (max-width: 480px) {
+  .shop {
+    width: 95vw;
+
+    .grid {
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: var(--spacing-sm);
+      padding: var(--spacing-sm);
+    }
+  }
+
+  .card {
+    padding: var(--spacing-sm);
+
+    .shop-item {
+      max-width: 70px;
+    }
+  }
+
+  header {
+    height: 10vh;
+
+    .button img {
+      max-height: 35px;
+    }
+  }
+
+  footer {
+    height: 15vh;
+    min-height: 60px;
+  }
+
+  .buttons button {
+    width: 18vw;
+  }
+}
+
+/* Адаптация для планшетов */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .shop {
+    width: 80vw;
+
+    .grid {
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+  }
+
+  .card {
+    .shop-item {
+      max-width: 120px;
+    }
+  }
+}
+
+/* Адаптация для больших экранов */
+@media (min-width: 1025px) {
+  .shop {
+    width: 60vw;
+    max-width: 900px;
+
+    .grid {
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    }
+  }
+
+  .card {
+    .shop-item {
+      max-width: 140px;
+    }
+  }
+}
+
+/* Поддержка безопасной зоны на iOS */
+@supports (padding: max(0px)) {
+  footer {
+    padding-bottom: max(var(--spacing-md), env(safe-area-inset-bottom));
+  }
+
+  header {
+    padding-top: max(var(--spacing-md), env(safe-area-inset-top));
+  }
+}
+
+/* Отключение выделения текста при тапах */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
 }
